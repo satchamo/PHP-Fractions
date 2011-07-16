@@ -177,5 +177,25 @@ assertEqual(Fractions::toString($f,false,false), "-10/4", $test);
 $f = new Fraction(8,4);
 $test = "Fractions::toString(Fraction(8,4))";
 assertEqual(Fractions::toString($f), "2", $test);
-echo Fractions::toString($f);
+
+//********************
+//* Fractions::add() *
+//********************
+$a = new Fraction(1,2);
+$b = new Fraction(1,2);
+$sum = Fractions::add($a, $b);
+$test = "Fractions::add(new Fraction(1,2), new Fraction(1,2))";
+assertEqual(Fractions::toString($sum), "1", $test);
+
+$a = new Fraction(1,2);
+$b = new Fraction(4,3);
+$c = new Fraction(-2,9);
+$sum = Fractions::add($a, $b, $c);
+$test = "Fractions::add(new Fraction(1,2), new Fraction(4,3), new Fraction(-2,9))";
+assertEqual(Fractions::toString($sum), "1 11/18", $test);
+
+$a = new Fraction(1,2);
+$sum = Fractions::add($a);
+$test = "Fractions::add(new Fraction(1,2))";
+assertEqual(Fractions::toString($sum), "1/2", $test);
 ?>
