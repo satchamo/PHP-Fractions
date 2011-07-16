@@ -95,6 +95,22 @@ class Fractions {
         return array($whole, $numerator, $fraction->getDenominator());
     }
 
+    // convert a Fraction object to lowest terms
+    public function toLowestTerms($fraction){
+        $gcf = self::gcf($fraction->getNumerator(), $fraction->getDenominator());
+        return new Fraction($fraction->getNumerator() / $gcf, $fraction->getDenominator() / $gcf);
+    }
+
+    // return the greatest common factor of a and b
+    private function gcf($a, $b){
+        while($b != 0){
+            $tmp = $a;
+            $a = $b;
+            $b = $tmp % $b;
+        }
+        return $a;
+    }
+
     // converts a 3 element array (where array[0] = whole, array[1] = numerator, and array[2] = denominator) into a Fraction object
     // or a 2 element array (where array[0] = numerator, and array[1] = denominator)
     private function toImproper($fraction_parts){
