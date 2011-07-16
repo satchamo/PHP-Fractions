@@ -21,7 +21,7 @@ class Fraction {
 }
 
 class Fractions {       
-    function add(){
+    public function add(){
         $fractions = func_get_args();
         $fractions_count = count($fractions);
         
@@ -39,6 +39,25 @@ class Fractions {
         
         return new Fraction($numerator, $denominator);
     }   
+
+    public function subtract(){
+        $fractions = func_get_args();
+        $fractions_count = count($fractions);
+        
+        // calculate the common denominator 
+        $denominator = $fractions[0]->getDenominator();
+        for($i = 1; $i < $fractions_count; ++$i) {
+            $denominator = self::lcm($denominator, $fractions[$i]->getDenominator());
+        }
+        
+        // set the inital adjusted $numerator and subtract the rest of the adjusted numerators
+        $numerator = $fractions[0]->getNumerator() * ($denominator / $fractions[0]->getDenominator());
+        for($i = 1; $i < $fractions_count; ++$i) {
+            $numerator = $numerator - $fractions[$i]->getNumerator() * ($denominator / $fractions[$i]->getDenominator());
+        }
+        
+        return new Fraction($numerator, $denominator);
+    }
 
     // convert a Fraction object to a pretty string
     public function toString($fraction, $mixed=true, $lowest_terms=true){
