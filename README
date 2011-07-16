@@ -1,6 +1,6 @@
 Author: Matt Johnson <matt@satchamo.com>
 
-Description: Performs basic addition, subtraction, multiplication, and division fractions. 
+Description: Performs basic addition, subtraction, multiplication, and division on fractions. 
 
 Installation: Include fractions.php in your program
 
