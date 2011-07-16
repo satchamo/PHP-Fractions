@@ -50,6 +50,26 @@ class Fractions {
         return $fraction;
     }
 
+    // convert an array to a Fraction object
+    // valid formats: array(whole), array(numerator, denominator), array(whole, numerator, denominator) 
+    public function fromArray($fraction_array){
+        $fraction_array_count = count($fraction_array);
+        // there is just a whole part
+        if($fraction_array_count == 1){
+            $fraction = new Fraction($fraction_array[0], 1);
+        // there is a numerator and denominator
+        } else if($fraction_array_count == 2){
+            $fraction = new Fraction($fraction_array[0], $fraction_array[1]);
+        // fraction with whole part, numerator and denominator, just run through toImproper()
+        } else if($fraction_array_count == 3) {
+            $fraction = self::toImproper($fraction_array);
+        } else {
+            throw new RuntimeException('Expected an array of length 1, 2 or 3 but got one of length ' . $fraction_array_count);
+        }
+
+        return $fraction;
+    }
+
     // converts a 3 element array (where array[0] = whole, array[1] = numerator, and array[2] = denominator) into a Fraction object
     // or a 2 element array (where array[0] = numerator, and array[1] = denominator)
     private function toImproper($fraction_parts){
