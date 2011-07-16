@@ -21,6 +21,25 @@ class Fraction {
 }
 
 class Fractions {       
+    function add(){
+        $fractions = func_get_args();
+        $fractions_count = count($fractions);
+        
+        // calculate the common denominator
+        $denominator = $fractions[0]->getDenominator();
+        for($i = 1; $i < $fractions_count; ++$i){
+            $denominator = self::lcm($denominator, $fractions[$i]->getDenominator());
+        }
+        
+        // add up all the adjusted numerators
+        $numerator = 0;
+        foreach($fractions as $k => $v){
+            $numerator += $fractions[$k]->getNumerator() * ($denominator / $fractions[$k]->getDenominator());
+        }
+        
+        return new Fraction($numerator, $denominator);
+    }   
+
     // convert a Fraction object to a pretty string
     public function toString($fraction, $mixed=true, $lowest_terms=true){
         $whole = 0;
@@ -154,6 +173,13 @@ class Fractions {
             $b = $tmp % $b;
         }
         return $a;
+    }
+
+    // returns the least common multiple of two integers
+    function lcm($a, $b){
+        $a = abs($a);
+        $b = abs($b);
+        return $a * $b / self::gcf($a, $b);
     }
 
     // converts a 3 element array (where array[0] = whole, array[1] = numerator, and array[2] = denominator) into a Fraction object
