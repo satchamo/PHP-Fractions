@@ -143,4 +143,39 @@ $f = new Fraction(0,4);
 $test = "Fractions::toLowestTerms(Fraction(0,4))";
 assertEqual(Fractions::toLowestTerms($f)->toString(), "0/1", $test);
 
+//*************************
+//* Fractions::toString() *
+//*************************
+$f = new Fraction(0,4);
+$test = "Fractions::toString(Fraction(0,4))";
+assertEqual(Fractions::toString($f), "0", $test);
+
+$f = new Fraction(1,4);
+$test = "Fractions::toString(Fraction(1,4))";
+assertEqual(Fractions::toString($f), "1/4", $test);
+
+$f = new Fraction(9,4);
+$test = "Fractions::toString(Fraction(9,4))";
+assertEqual(Fractions::toString($f), "2 1/4", $test);
+
+$f = new Fraction(-9,4);
+$test = "Fractions::toString(Fraction(-9,4))";
+assertEqual(Fractions::toString($f), "-2 1/4", $test);
+
+$f = new Fraction(-10,4);
+$test = "Fractions::toString(Fraction(-10,4), false)";
+assertEqual(Fractions::toString($f, false), "-5/2", $test);
+
+$f = new Fraction(-10,4);
+$test = "Fractions::toString(Fraction(-10,4),true,false)";
+assertEqual(Fractions::toString($f,true,false), "-2 2/4", $test);
+
+$f = new Fraction(-10,4);
+$test = "Fractions::toString(Fraction(-10,4),false,false)";
+assertEqual(Fractions::toString($f,false,false), "-10/4", $test);
+
+$f = new Fraction(8,4);
+$test = "Fractions::toString(Fraction(8,4))";
+assertEqual(Fractions::toString($f), "2", $test);
+echo Fractions::toString($f);
 ?>
