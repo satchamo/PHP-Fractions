@@ -219,4 +219,25 @@ $a = new Fraction(1,2);
 $diff = Fractions::subtract($a);
 $test = "Fractions::subtract(new Fraction(1,2))";
 assertEqual(Fractions::toString($diff), "1/2", $test);
+
+//*************************
+//* Fractions::multiply() *
+//*************************
+$a = new Fraction(1,2);
+$b = new Fraction(1,2);
+$prod = Fractions::multiply($a, $b);
+$test = "Fractions::multiply(new Fraction(1,2), new Fraction(1,2))";
+assertEqual(Fractions::toString($prod), "1/4", $test);
+
+$a = new Fraction(1,2);
+$b = new Fraction(-1,2);
+$c = new Fraction(-5,3);
+$prod = Fractions::multiply($a, $b, $c);
+$test = "Fractions::multiply(new Fraction(1,2), new Fraction(-1,2), new Fraction(-5,3))";
+assertEqual(Fractions::toString($prod), "5/12", $test);
+
+$a = new Fraction(1,2);
+$prod = Fractions::subtract($a);
+$test = "Fractions::multiply(new Fraction(1,2))";
+assertEqual(Fractions::toString($prod), "1/2", $test);
 ?>
