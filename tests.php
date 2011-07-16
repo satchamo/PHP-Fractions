@@ -104,4 +104,28 @@ assertEqual(Fractions::fromArray($f)->toString(), "1/3", $test);
 $f = array(1,2,3);
 $test = "Fractions::fromArray(array(1,2,3))";
 assertEqual(Fractions::fromArray($f)->toString(), "5/3", $test);
+
+//************************
+//* Fractions::toMixed() *
+//************************
+$f = new Fraction(5,3);
+$test = "Fractions::toMixed(Fraction(5,3))";
+assertEqual(Fractions::toMixed($f), array(1,2,3), $test);
+
+$f = new Fraction(-5,3);
+$test = "Fractions::toMixed(Fraction(-5,3))";
+assertEqual(Fractions::toMixed($f), array(-1,2,3), $test);
+
+$f = new Fraction(-10,2);
+$test = "Fractions::toMixed(Fraction(-10,2))";
+assertEqual(Fractions::toMixed($f), array(-5,0,2), $test);
+
+$f = new Fraction(10,2);
+$test = "Fractions::toMixed(Fraction(10,2))";
+assertEqual(Fractions::toMixed($f), array(5,0,2), $test);
+
+$f = new Fraction(1,3);
+$test = "Fractions::toMixed(Fraction(1,3))";
+assertEqual(Fractions::toMixed($f), array(0,1,3), $test);
+
 ?>
