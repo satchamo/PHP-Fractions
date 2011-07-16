@@ -1,0 +1,7 @@
+Author: Matt Johnson <matt@satchamo.com>
+
+Description: Performs basic addition, subtraction, multiplication, and division fractions. 
+
+Installation: Include fractions.php in your program
+
+Examples: See examples.php

@@ -21,7 +21,7 @@ class Fraction {
 }
 
 class Fractions {       
-    public function add(){
+    public static function add(){
         $fractions = func_get_args();
         $fractions_count = count($fractions);
         
@@ -40,7 +40,7 @@ class Fractions {
         return new Fraction($numerator, $denominator);
     }   
 
-    public function subtract(){
+    public static function subtract(){
         $fractions = func_get_args();
         $fractions_count = count($fractions);
         
@@ -59,7 +59,7 @@ class Fractions {
         return new Fraction($numerator, $denominator);
     }
 
-    public function multiply(){
+    public static function multiply(){
         $fractions = func_get_args();
         $fractions_count = count($fractions);
         
@@ -75,7 +75,7 @@ class Fractions {
         return new Fraction($numerator, $denominator);
     }
 
-    function divide(){
+    public static function divide(){
         $fractions = func_get_args();
         $fractions_count = count($fractions);
         
@@ -92,7 +92,7 @@ class Fractions {
     }
 
     // convert a Fraction object to a pretty string
-    public function toString($fraction, $mixed=true, $lowest_terms=true){
+    public static function toString($fraction, $mixed=true, $lowest_terms=true){
         $whole = 0;
         $numerator = $fraction->getNumerator();
         $denominator = $fraction->getDenominator();
@@ -137,7 +137,7 @@ class Fractions {
         }
     }
     // converts a string into a Fraction object
-    public function fromString($fraction_str){
+    public static function fromString($fraction_str){
         // if the fraction is numeric, that means there is just a whole part
         if(is_numeric($fraction_str)){
             $fraction = new Fraction($fraction_str, 1);
@@ -167,7 +167,7 @@ class Fractions {
 
     // convert an array to a Fraction object
     // valid formats: array(whole), array(numerator, denominator), array(whole, numerator, denominator) 
-    public function fromArray($fraction_array){
+    public static function fromArray($fraction_array){
         $fraction_array_count = count($fraction_array);
         // there is just a whole part
         if($fraction_array_count == 1){
@@ -186,7 +186,7 @@ class Fractions {
     }
 
     // converts a Fraction object into an array representing the fraction as a mixed number (array[0] = whole, array[1] = numerator, array[2] = denominator)
-    public function toMixed($fraction){
+    public static function toMixed($fraction){
         $numerator = $fraction->getNumerator();
         $whole = 0;
         // we only need to do something if the numerator is greater than the denominator 
@@ -211,13 +211,13 @@ class Fractions {
     }
 
     // convert a Fraction object to lowest terms
-    public function toLowestTerms($fraction){
+    public static function toLowestTerms($fraction){
         $gcf = self::gcf($fraction->getNumerator(), $fraction->getDenominator());
         return new Fraction($fraction->getNumerator() / $gcf, $fraction->getDenominator() / $gcf);
     }
 
     // return the greatest common factor of a and b
-    private function gcf($a, $b){
+    private static function gcf($a, $b){
         while($b != 0){
             $tmp = $a;
             $a = $b;
@@ -235,7 +235,7 @@ class Fractions {
 
     // converts a 3 element array (where array[0] = whole, array[1] = numerator, and array[2] = denominator) into a Fraction object
     // or a 2 element array (where array[0] = numerator, and array[1] = denominator)
-    private function toImproper($fraction_parts){
+    private static function toImproper($fraction_parts){
         // if there is a whole part to the fraction, do the math
         if(count($fraction_parts) == 3){
             $whole = $fraction_parts[0];
