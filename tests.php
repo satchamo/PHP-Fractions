@@ -54,4 +54,39 @@ assertEqual($f->toString(), "10/2", $test);
 $f = new Fraction(-3,-4);
 $test = "Fraction(-3,-4)->toString()";
 assertEqual($f->toString(), "3/4", $test);
+
+//************************
+//* Fraction::fromString() *
+//************************
+$f = "1/2";
+$test = "Fractions::fromString('$f')";
+assertEqual(Fractions::fromString($f)->toString(), "1/2", $test);
+
+$f = "-5/2";
+$test = "Fractions::fromString('$f')";
+assertEqual(Fractions::fromString($f)->toString(), "-5/2", $test);
+
+$f = "5/-2";
+$test = "Fractions::fromString('$f')";
+assertEqual(Fractions::fromString($f)->toString(), "-5/2", $test);
+
+$f = "1 2/3";
+$test = "Fractions::fromString('$f')";
+assertEqual(Fractions::fromString($f)->toString(), "5/3", $test);
+
+$f = "-1 2/3";
+$test = "Fractions::fromString('$f')";
+assertEqual(Fractions::fromString($f)->toString(), "-5/3", $test);
+
+$f = "1 -2/3";
+$test = "Fractions::fromString('$f')";
+assertEqual(Fractions::fromString($f)->toString(), "-5/3", $test);
+
+$f = "1 -2/-3";
+$test = "Fractions::fromString('$f')";
+assertEqual(Fractions::fromString($f)->toString(), "5/3", $test);
+
+$f = "-1 -2/-3";
+$test = "Fractions::fromString('$f')";
+assertEqual(Fractions::fromString($f)->toString(), "-5/3", $test);
 ?>
