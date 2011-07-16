@@ -70,6 +70,31 @@ class Fractions {
         return $fraction;
     }
 
+    // converts a Fraction object into an array representing the fraction as a mixed number (array[0] = whole, array[1] = numerator, array[2] = denominator)
+    public function toMixed($fraction){
+        $numerator = $fraction->getNumerator();
+        $whole = 0;
+        // we only need to do something if the numerator is greater than the denominator 
+        if(abs($fraction->getNumerator()) >= $fraction->getDenominator()) 
+        {
+            // gotta use two different functions because of the negative issue
+            if($fraction->getNumerator() > 0){
+                $whole = floor($fraction->getNumerator() / $fraction->getDenominator());    
+            } else { 
+                $whole = ceil($fraction->getNumerator() / $fraction->getDenominator()); 
+            }
+            
+            // recalculate the numerator
+            $numerator = $numerator - ($whole * $fraction->getDenominator()); 
+            // the negative sign will be on the whole part, so get rid of it on the numerator
+            if($fraction->getNumerator() < 0){
+                $numerator *= -1;
+            }
+        } 
+        
+        return array($whole, $numerator, $fraction->getDenominator());
+    }
+
     // converts a 3 element array (where array[0] = whole, array[1] = numerator, and array[2] = denominator) into a Fraction object
     // or a 2 element array (where array[0] = numerator, and array[1] = denominator)
     private function toImproper($fraction_parts){
