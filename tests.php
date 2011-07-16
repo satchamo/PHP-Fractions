@@ -240,4 +240,25 @@ $a = new Fraction(1,2);
 $prod = Fractions::subtract($a);
 $test = "Fractions::multiply(new Fraction(1,2))";
 assertEqual(Fractions::toString($prod), "1/2", $test);
+
+//***********************
+//* Fractions::divide() *
+//***********************
+$a = new Fraction(1,2);
+$b = new Fraction(1,2);
+$quo = Fractions::divide($a, $b);
+$test = "Fractions::divide(new Fraction(1,2), new Fraction(1,2))";
+assertEqual(Fractions::toString($quo), "1", $test);
+
+$a = new Fraction(1,2);
+$b = new Fraction(-1,2);
+$c = new Fraction(-5,3);
+$quo = Fractions::divide($a, $b, $c);
+$test = "Fractions::divide(new Fraction(1,2), new Fraction(-1,2), new Fraction(-5,3))";
+assertEqual(Fractions::toString($quo), "3/5", $test);
+
+$a = new Fraction(1,2);
+$quo = Fractions::divide($a);
+$test = "Fractions::divide(new Fraction(1,2))";
+assertEqual(Fractions::toString($quo), "1/2", $test);
 ?>
