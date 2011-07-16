@@ -75,6 +75,22 @@ class Fractions {
         return new Fraction($numerator, $denominator);
     }
 
+    function divide(){
+        $fractions = func_get_args();
+        $fractions_count = count($fractions);
+        
+        // cross multiply
+        $numerator = $fractions[0]->getNumerator();
+        $denominator = $fractions[0]->getDenominator();
+        
+        for($i = 1; $i < $fractions_count; $i++){
+            $numerator *= $fractions[$i]->getDenominator();
+            $denominator *= $fractions[$i]->getNumerator();
+        }   
+                    
+        return new Fraction($numerator, $denominator);      
+    }
+
     // convert a Fraction object to a pretty string
     public function toString($fraction, $mixed=true, $lowest_terms=true){
         $whole = 0;
