@@ -59,6 +59,22 @@ class Fractions {
         return new Fraction($numerator, $denominator);
     }
 
+    public function multiply(){
+        $fractions = func_get_args();
+        $fractions_count = count($fractions);
+        
+        $numerator = 1;
+        $denominator = 1;
+        
+        // multiply straight across
+        foreach($fractions as $k => $v){
+            $numerator *= $fractions[$k]->getNumerator();
+            $denominator *= $fractions[$k]->getDenominator();
+        }
+            
+        return new Fraction($numerator, $denominator);
+    }
+
     // convert a Fraction object to a pretty string
     public function toString($fraction, $mixed=true, $lowest_terms=true){
         $whole = 0;
