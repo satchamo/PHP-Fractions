@@ -89,4 +89,19 @@ assertEqual(Fractions::fromString($f)->toString(), "5/3", $test);
 $f = "-1 -2/-3";
 $test = "Fractions::fromString('$f')";
 assertEqual(Fractions::fromString($f)->toString(), "-5/3", $test);
+
+//**************************
+//* Fractions::fromArray() *
+//**************************
+$f = array(3);
+$test = "Fractions::fromArray(array(3))";
+assertEqual(Fractions::fromArray($f)->toString(), "3/1", $test);
+
+$f = array(1,3);
+$test = "Fractions::fromArray(array(1,3))";
+assertEqual(Fractions::fromArray($f)->toString(), "1/3", $test);
+
+$f = array(1,2,3);
+$test = "Fractions::fromArray(array(1,2,3))";
+assertEqual(Fractions::fromArray($f)->toString(), "5/3", $test);
 ?>
