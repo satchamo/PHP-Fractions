@@ -128,4 +128,19 @@ $f = new Fraction(1,3);
 $test = "Fractions::toMixed(Fraction(1,3))";
 assertEqual(Fractions::toMixed($f), array(0,1,3), $test);
 
+//******************************
+//* Fractions::toLowestTerms() *
+//******************************
+$f = new Fraction(10,2);
+$test = "Fractions::toLowestTerms(Fraction(10,2))";
+assertEqual(Fractions::toLowestTerms($f)->toString(), "5/1", $test);
+
+$f = new Fraction(-20,5);
+$test = "Fractions::toLowestTerms(Fraction(-20,5))";
+assertEqual(Fractions::toLowestTerms($f)->toString(), "-4/1", $test);
+
+$f = new Fraction(0,4);
+$test = "Fractions::toLowestTerms(Fraction(0,4))";
+assertEqual(Fractions::toLowestTerms($f)->toString(), "0/1", $test);
+
 ?>
