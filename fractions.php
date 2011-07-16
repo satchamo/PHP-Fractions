@@ -21,6 +21,51 @@ class Fraction {
 }
 
 class Fractions {       
+    // convert a Fraction object to a pretty string
+    public function toString($fraction, $mixed=true, $lowest_terms=true){
+        $whole = 0;
+        $numerator = $fraction->getNumerator();
+        $denominator = $fraction->getDenominator();
+
+        if($mixed){
+            $fraction_array = self::toMixed($fraction);
+            $whole = $fraction_array[0];
+            $numerator = $fraction_array[1];
+            $denominator = $fraction_array[2];
+            $fraction = new Fraction($numerator, $denominator);
+        }
+
+        if($lowest_terms){
+            $fraction = self::toLowestTerms($fraction);
+            $numerator = $fraction->getNumerator();
+            $denominator = $fraction->getDenominator();
+        }
+
+        // don't need to show leading zero
+        if($whole == 0){
+            $whole = '';
+        // append space after the whole number since we don't want the whole and numerator touching
+        } else {
+            $whole .= " ";
+        }
+
+        // don't show the numerator or denominator
+        if($numerator == 0){
+            $numerator = '';
+            $denominator = '';
+        // append a slash after the numerator
+        } else {
+            $numerator .= "/";
+        }
+
+        // if the fraction is just zero, just show a zero
+        if($whole == 0 && $numerator == 0){
+            return 0;
+        } else {
+            $fraction_str = $whole . $numerator . $denominator;
+            return trim($fraction_str);
+        }
+    }
     // converts a string into a Fraction object
     public function fromString($fraction_str){
         // if the fraction is numeric, that means there is just a whole part
